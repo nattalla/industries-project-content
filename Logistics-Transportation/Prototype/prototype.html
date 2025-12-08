@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistics & Transportation Organizational Strategy | Rooted Advisory Group</title>
+    <meta name="description" content="We help mid-market logistics and transportation companies build organizations that can execute in high-pressure operational environments. No transformation theater—real results.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .wide-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23003366" width="100%" height="100%"/><rect fill="%23004488" x="0" y="300" width="100%" height="300"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #0066cc;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0052a3;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #333;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-small {
+            padding: 60px 0;
+        }
+
+        .section-label {
+            color: #0066cc;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .bg-light {
+            background: #f9fafb;
+        }
+
+        .bg-dark {
+            background: #003366;
+            color: white;
+        }
+
+        .bg-dark h2,
+        .bg-dark h3 {
+            color: white;
+        }
+
+        /* Two Column Layout */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 40% 60%;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .column-image {
+            width: 100%;
+            height: 300px;
+            background: #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        /* Grid Layout */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .grid-5 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Card Styling */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: #0066cc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .sector-card {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), #003366;
+            color: white;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sector-card h3 {
+            color: white;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin-top: 2rem;
+        }
+
+        .accordion-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: #f9fafb;
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: #f3f4f6;
+        }
+
+        .accordion-header.active {
+            background: #0066cc;
+            color: white;
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+            padding: 1.5rem;
+        }
+
+        .accordion-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-toggle.active {
+            transform: rotate(45deg);
+        }
+
+        /* Stats */
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0066cc;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        /* Form */
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input {
+            width: auto;
+        }
+
+        .form-submit {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .btn-submit {
+            background: white;
+            color: #0066cc;
+            font-weight: 600;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .privacy-note {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                height: 50vh;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content h2 {
+                font-size: 1.25rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .two-columns {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .container, .wide-container {
+                padding: 0 15px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Build Organizations That Execute Under Pressure</h1>
+                <h2>We help mid-market logistics and transportation companies build organizational capability that works in high-pressure operational environments where client commitments are non-negotiable and margins are tight.</h2>
+                <div class="hero-buttons">
+                    <a href="#consultation-form" class="btn btn-primary">Schedule a Consultation</a>
+                    <a href="#how-we-help" class="btn btn-secondary">View Our Approach</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Problem Section -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-label">The Challenge</div>
+            <h2>The Logistics Sector's Organizational Problem</h2>
+            <div class="two-columns">
+                <div>
+                    <p>The logistics and transportation industry is experiencing robust growth while confronting operational complexity that would make anyone's head spin. Global logistics is projected to reach $14.08 trillion by 2028, and the AI in logistics market exploded to $20.8 billion in 2025.</p>
+                    
+                    <p>Here's what those growth numbers hide: nearly 450,000 job openings in transportation and warehousing—one of the highest vacancy rates across industries. Driver shortages of 60,000 that could grow to 160,000 by 2030. Warehouse turnover exceeding 50%. Customer expectations have reached impossible heights—41% of consumers expect delivery in under 24 hours—while margins stay razor thin.</p>
+                </div>
+                <div>
+                    <p><strong>The strategies are clear:</strong> implement automation, adopt AI-powered optimization, build resilient supply chains, improve service levels. Everyone knows what needs to happen.</p>
+                    
+                    <p><strong>The problem is execution.</strong> Your organization can't keep pace with technological change. Your workforce is unstable. Your processes weren't designed for current operational complexity.</p>
+                    
+                    <p>The Big 5 will sell you a supply chain transformation program with beautiful process maps that assume you can pause operations for organizational change. They'll bring consultants who've studied logistics but never managed a warehouse at 2 a.m. when a client's urgent shipment is stuck and your best dispatcher just quit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Rooted is Different -->
+    <section class="section bg-dark">
+        <div class="container">
+            <div class="two-columns">
+                <div>
+                    <h2>We Work Differently</h2>
+                    <div class="column-image">Team Image Placeholder</div>
+                </div>
+                <div>
+                    <p style="font-size: 1.125rem;">We help logistics and transportation companies build organizations that can execute in high-pressure operational environments where client commitments are non-negotiable, margins are tight, and workforce instability is constant.</p>
+                    
+                    <p>The logistics industry operates in permanent crisis mode. Driver turnover at large truckload carriers runs above 90% annually. Technology adoption that should streamline operations often creates new problems. Supply chain disruptions that used to be occasional are now constant.</p>
+                    
+                    <p><strong>Your org chart shows clear reporting lines. Reality is messier.</strong> The dispatcher who knows which carriers to call. The warehouse supervisor clients actually trust. The operations manager who coordinates complex moves that shouldn't be possible. When these people leave, organizational capability walks out with them.</p>
+                    
+                    <p>We come with approaches that work in mid-market logistics environments where client service pressures are constant and you can't pause operations for organizational change.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="how-we-help" class="section">
+        <div class="wide-container">
+            <div class="text-center">
+                <div class="section-label">Our Services</div>
+                <h2>How Rooted Helps Logistics & Transportation Companies</h2>
+                <p style="max-width: 600px; margin: 0 auto;">We bring four core organizational capabilities that work in high-pressure logistics environments.</p>
+            </div>
+            
+            <div class="grid-4">
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Organizational Network Analysis</h3>
+                    <p>Map the critical service networks that org charts don't capture. We identify the dispatcher who knows which carriers to call, the warehouse supervisor clients trust, and the operations manager who makes impossible logistics work.</p>
+                    <p>When these people leave, organizational capability walks out with them. We use ONA to protect institutional knowledge, enable strategic succession planning, and reveal coordination gaps that slow everything down.</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Learn More →</a>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">⚙️</div>
+                    <h3>Business Process Engineering</h3>
+                    <p>Optimize service workflows for logistics realities. We redesign processes designed for lower operational complexity—manual workflows that should be automated, client onboarding that wasn't designed for current service requirements, warehouse procedures that create bottlenecks.</p>
+                    <p>We map workflows end-to-end, identify bottlenecks, and implement changes that improve efficiency without breaking client service.</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Learn More →</a>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🔄</div>
+                    <h3>Organizational Change Management</h3>
+                    <p>Drive technology and process adoption that actually sticks. Logistics companies constantly implement change—WMS upgrades, TMS platforms, automation, carrier integration systems—but change only works when people adopt it.</p>
+                    <p>We design change programs that work in logistics environments: leadership alignment, employee engagement, phased rollouts that prevent service disruption, and post-launch support that ensures changes stick.</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Learn More →</a>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <h3>Organizational Development & Effectiveness</h3>
+                    <p>Build workforce resilience in high-turnover environments. You can't pull warehouse workers off shifts for training. You can't wait for external hires to fill every capability gap.</p>
+                    <p>We help logistics companies analyze turnover root causes, design retention strategies, create career pathways from frontline to management, and build leadership capability at the supervisor level—creating workforce stability that enables consistent service quality.</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sectors We Serve -->
+    <section class="section bg-dark">
+        <div class="wide-container">
+            <div class="text-center">
+                <div class="section-label" style="color: #66b3ff;">Industry Sectors</div>
+                <h2>Specialized Expertise Across Transportation Modes</h2>
+                <p style="max-width: 700px; margin: 0 auto;">Logistics and transportation isn't one industry—it's six different operating environments with distinct economics, regulations, and risk profiles. Here's how Rooted's services translate into mode-specific value.</p>
+            </div>
+            
+            <div class="grid-5">
+                <div class="sector-card">
+                    <div>
+                        <h3>3PL & Freight Forwarding</h3>
+                        <p>Complex coordination across ocean, air, and ground freight. Multi-party documentation. Compliance nightmares. We help 3PLs and forwarders streamline operations, reduce exceptions, and build organizational capability that scales with growth.</p>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Explore This Sector →</a>
+                </div>
+                
+                <div class="sector-card">
+                    <div>
+                        <h3>Warehousing & Storage</h3>
+                        <p>High turnover. Seasonal demand spikes. Automation adoption challenges. We help warehouse operators reduce turnover, optimize workflows, implement technology that frontline teams actually use, and build supervisor capability that creates operational consistency.</p>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Explore This Sector →</a>
+                </div>
+                
+                <div class="sector-card">
+                    <div>
+                        <h3>Transportation</h3>
+                        <p>Driver shortages. Dispatch efficiency. Fleet optimization. We help trucking, rail, and intermodal operators map critical dispatch networks, redesign load planning workflows, and manage transitions to digital platforms and green fleets.</p>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Explore This Sector →</a>
+                </div>
+                
+                <div class="sector-card">
+                    <div>
+                        <h3>4PL & End-to-End Logistics</h3>
+                        <p>Cross-modal coordination. Control tower operations. Multi-vendor orchestration. We help 4PLs build organizational models that enable end-to-end visibility, systematic disruption response, and mode-agnostic optimization across complex networks.</p>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Explore This Sector →</a>
+                </div>
+                
+                <div class="sector-card">
+                    <div>
+                        <h3>Supply Chain Management & Technology</h3>
+                        <p>Digital transformation. Platform adoption. Data integration. We help supply chain technology providers and digitally-native logistics companies scale operations, drive user adoption, and build organizational capability that keeps pace with technological change.</p>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Explore This Sector →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- When Leaders Call Us -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="text-center">
+                <div class="section-label">Common Scenarios</div>
+                <h2>When Logistics Leaders Call Us</h2>
+                <p style="max-width: 700px; margin: 0 auto;">Economic volatility, policy uncertainty, and operational complexity are creating situations where traditional operating models break down. These are the three scenarios where logistics executives tell us Rooted delivers immediate value.</p>
+            </div>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header active" onclick="toggleAccordion(0)">
+                        <span>Tariff Announcements Are Causing Demand Whiplash</span>
+                        <span class="accordion-toggle active">+</span>
+                    </div>
+                    <div class="accordion-content active">
+                        <p><strong>What's actually happening:</strong><br>
+                        Commercial, pricing, network planning, and operations teams can't coordinate fast enough during tariff announcements and front-loading events. Lane changes, contract repricing, and capacity shifts that should take days are taking weeks. By the time you respond, market conditions have shifted again.</p>
+                        
+                        <p><strong>How Rooted helps:</strong><br>
+                        We use Organizational Network Analysis to map how your teams coordinate during tariff events and identify hidden decision bottlenecks. Then we redesign forecasting-to-execution workflows so rate, routing, and capacity decisions can be re-optimized within days when tariffs change.</p>
+                        
+                        <p>For companies tired of treating every tariff event as a one-off fire drill, we institutionalize a "policy response cell" with clear decision rights that treats tariff scenarios as repeatable, manageable events.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(1)">
+                        <span>You Need Automation But Can't Justify the CapEx Right Now</span>
+                        <span class="accordion-toggle">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>What's actually happening:</strong><br>
+                        Your operations need automation, but your CFO won't approve major capex until rates stabilize. Meanwhile, manual processes are costing you margin and creating service inconsistency. You're stuck between "can't afford to invest" and "can't afford not to."</p>
+                        
+                        <p><strong>How Rooted helps:</strong><br>
+                        We identify underutilized network experts and informal coordinators who can accelerate ROI from smaller, modular automation and RPA deployments that don't require mega-capex approval. We target no-regrets process reengineering—order-to-cash, dock scheduling, claims, exception management—that delivers cost and service gains with minimal capital investment.</p>
+                        
+                        <p>Then we build a staged automation roadmap that sequences RPA in shipment scheduling and documentation first, saving higher-capex physical automation for when cash generation supports it.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(2)">
+                        <span>Your Disruption Response Depends on Heroics, Not Systems</span>
+                        <span class="accordion-toggle">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>What's actually happening:</strong><br>
+                        When rail embargoes hit or ports get congested, a few key people scramble to coordinate reroutes, modal shifts, and customer communication. They make it work—but it's exhausting, inconsistent, and fragile. If those people leave, organizational capability walks out with them.</p>
+                        
+                        <p><strong>How Rooted helps:</strong><br>
+                        We stress-test your organization's informal networks to identify who actually coordinates during disruptions and where single points of failure threaten resilience. Then we codify disruption playbooks into core processes—routing, procurement, customer service—converting ad-hoc heroics into standardized, testable response flows.</p>
+                        
+                        <p>Finally, we embed resilience into structure and governance (multi-region control towers, clear escalation paths) and reinforce behaviors that support rapid cross-functional decision-making in crises.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center">
+                <div class="section-label">Recent Results</div>
+                <h2>Real Impact in High-Pressure Environments</h2>
+            </div>
+            
+            <div class="grid-3">
+                <div class="stat-card">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">Platform adoption within 90 days</div>
+                    <p>Helped a regional logistics company implement a platform migration where adoption reached 90% within 90 days—without service disruption or mass departures.</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">40%</div>
+                    <div class="stat-label">Reduction in client onboarding time</div>
+                    <p>Redesigned client onboarding processes that reduced implementation time from 90 days to 45 days while improving service quality and consistency.</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">55% → 35%</div>
+                    <div class="stat-label">Warehouse turnover reduction in 9 months</div>
+                    <p>Helped a warehousing operation reduce frontline turnover from 55% to 35% within nine months through systematic retention strategies and career pathway development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Work With Us -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="two-columns">
+                <div>
+                    <h2>Why Logistics Leaders Work With Rooted</h2>
+                    <p>We're not the Big 5. We don't bring transformation programs that assume you can pause operations. We work with mid-market logistics and transportation companies—3PLs, freight forwarders, warehousing operations, regional carriers, specialty logistics providers.</p>
+                    
+                    <p><strong>We work at the mid-market level because that's where organizational strategy creates competitive advantage.</strong> Large logistics enterprises can absorb inefficiency through scale. Small providers are nimble enough that everyone knows everything. Mid-market logistics companies have real organizational complexity but need solutions that work within realistic resource constraints and can't disrupt client service.</p>
+                    
+                    <p>Our team includes people who've actually managed logistics operations, dealt with client escalations at 2 a.m., managed warehouse teams under pressure, and implemented change while maintaining service commitments. We understand the difference between what works in theory and what works when your largest client is threatening to leave and you're short-staffed.</p>
+                    
+                    <p><strong>Our engagements deliver measurable improvements in months, not years.</strong> We work with your actual constraints—we're not going to tell you to pause client operations for organizational transformation. And we build your internal capability to continue improving after we leave.</p>
+                </div>
+                <div>
+                    <div class="column-image" style="height: 400px;">Consultation Image Placeholder</div>
+                    <div style="margin-top: 1.5rem;">
+                        <p><strong>Key Differentiators:</strong></p>
+                        <ul style="margin-top: 1rem;">
+                            <li>✓ Mid-market focused</li>
+                            <li>✓ Real logistics operations experience</li>
+                            <li>✓ Results in months, not years</li>
+                            <li>✓ No transformation theater</li>
+                            <li>✓ Build your internal capability</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Form -->
+    <section id="consultation-form" class="section bg-dark">
+        <div class="form-container">
+            <div class="text-center">
+                <h2>Let's Talk About What's Possible</h2>
+                <p style="margin-bottom: 3rem;">If you're leading a logistics or transportation company and dealing with organizational challenges—workforce instability, technology adoption failures, client service inconsistency, or cross-functional coordination breakdowns—Rooted can help.</p>
+            </div>
+            
+            <form id="consultation-form-element">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="company">Company *</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Role/Title</label>
+                        <input type="text" id="title" name="title">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="company-size">Company Size</label>
+                        <select id="company-size" name="company-size">
+                            <option value="">Select size...</option>
+                            <option value="<50">< 50 employees</option>
+                            <option value="50-200">50-200 employees</option>
+                            <option value="200-500">200-500 employees</option>
+                            <option value="500+">500+ employees</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Primary Challenge (select all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="workforce" name="challenges" value="workforce">
+                            <label for="workforce">Workforce instability / high turnover</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="technology" name="challenges" value="technology">
+                            <label for="technology">Technology adoption / implementation</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="process" name="challenges" value="process">
+                            <label for="process">Process inefficiency</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="coordination" name="challenges" value="coordination">
+                            <label for="coordination">Cross-functional coordination</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="scaling" name="challenges" value="scaling">
+                            <label for="scaling">Scaling operations</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="other" name="challenges" value="other">
+                            <label for="other">Other</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="source">How did you hear about us?</label>
+                    <input type="text" id="source" name="source">
+                </div>
+                
+                <div class="form-group">
+                    <label for="details">Additional Details</label>
+                    <textarea id="details" name="details" placeholder="Tell us more about your specific challenges or questions..."></textarea>
+                </div>
+                
+                <div class="form-submit">
+                    <button type="submit" class="btn-submit">Request Consultation</button>
+                    <p class="privacy-note">We respect your privacy. Your information will only be used to respond to your consultation request.</p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Accordion functionality
+        function toggleAccordion(index) {
+            const headers = document.querySelectorAll('.accordion-header');
+            const contents = document.querySelectorAll('.accordion-content');
+            const toggles = document.querySelectorAll('.accordion-toggle');
+            
+            // Close all accordions
+            headers.forEach(header => header.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            toggles.forEach(toggle => toggle.classList.remove('active'));
+            
+            // Open clicked accordion
+            headers[index].classList.add('active');
+            contents[index].classList.add('active');
+            toggles[index].classList.add('active');
+        }
+
+        // Form submission
+        document.getElementById('consultation-form-element').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {};
+            
+            // Convert form data to object
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Handle checkboxes
+            const challenges = [];
+            document.querySelectorAll('input[name="challenges"]:checked').forEach(checkbox => {
+                challenges.push(checkbox.value);
+            });
+            data.challenges = challenges;
+            
+            console.log('Form submitted with data:', data);
+            
+            // Show success message
+            alert('Thank you for your interest! We\'ll be in touch within 24 hours to schedule your consultation.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
