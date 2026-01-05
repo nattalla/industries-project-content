@@ -1,5 +1,28 @@
 # Screenshot to Blocks - Skill Module
 
+## INSTRUCTIONS FOR CLAUDE
+
+When the user uploads a screenshot and asks to convert it to blocks:
+
+1. **Analyze the screenshot** using the workflow in this document
+2. **Decide** whether to use WP Core or GreenShift blocks (default to Core)
+3. **Translate colors** to Rooted's brand palette (see Brand Translation section)
+4. **Generate block code** in WordPress block format (not CSS)
+5. **Provide working code** the user can copy directly into WordPress Code Editor
+6. **Reference the Proven Example** for code structure and formatting
+7. **Offer both versions** (Core and GreenShift) when appropriate
+
+**CRITICAL:** Output must be WordPress block HTML code with `<!-- wp:` comments, NOT standalone CSS or HTML.
+
+**OUTPUT FORMAT:**
+```html
+<!-- wp:group {...} -->
+<div class="wp-block-group">
+  <!-- Actual block code here -->
+</div>
+<!-- /wp:group -->
+```
+
 ## Purpose
 Convert design screenshots into working WordPress block code that matches Rooted's brand, is responsive, and uses the appropriate blocks (WP Core vs GreenShift).
 
