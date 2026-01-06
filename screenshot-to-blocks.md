@@ -1,18 +1,43 @@
 # Screenshot to Blocks - Skill Module
 
+## CRITICAL LESSONS LEARNED
+
+**WHAT DOESN'T WORK:**
+1. ❌ Using `greenshift-blocks/row`, `greenshift-blocks/heading`, `greenshift-blocks/button` - these may not be available in user's GreenShift installation
+2. ❌ Adding inline `style=""` attributes to force colors - GreenShift ignores these
+3. ❌ Using nested spacing objects like `"spacing":{"padding":{"values":{...}}}` - causes "Cannot read properties of undefined" errors
+4. ❌ Being overly positive about code that looks broken on the live site
+5. ❌ Using specific image URLs from screenshots - use placeholder services instead
+
+**WHAT WORKS:**
+1. ✅ Use `greenshift-blocks/element` - proven to exist in user's installation
+2. ✅ Colors go in `styleAttributes` arrays: `"color":["#ffffff"]` NOT inline styles
+3. ✅ Use direct properties: `"paddingTop":["60px"]` NOT nested spacing objects
+4. ✅ Use `\u002d` encoding for dashes in CSS variables
+5. ✅ Include `align="full"`, `isVariation`, and `metadata` attributes for proper validation
+6. ✅ Use placeholder image services like `https://via.placeholder.com/1920x800/4B7878/4B7878` or WordPress default gray box
+7. ✅ Accept that one "Attempt Recovery" click is normal and acceptable
+
+**PLACEHOLDER IMAGES:**
+- Use `https://via.placeholder.com/[width]x[height]/[bgcolor]/[bgcolor]` for solid color placeholders
+- Example: `https://via.placeholder.com/1920x800/4B7878/4B7878` for Rooted teal background
+- Or let WordPress use default gray placeholder box
+
 ## INSTRUCTIONS FOR CLAUDE
 
 When the user uploads a screenshot and asks to convert it to blocks:
 
 1. **Analyze the screenshot** using the workflow in this document
-2. **Decide** whether to use WP Core or GreenShift blocks (default to Core)
-3. **Translate colors** to Rooted's brand palette (see Brand Translation section)
-4. **Generate block code** in WordPress block format (not CSS)
-5. **Provide working code** the user can copy directly into WordPress Code Editor
-6. **Reference the Proven Example** for code structure and formatting
-7. **Offer both versions** (Core and GreenShift) when appropriate
+2. **Default to WP Core blocks** - simpler and more reliable
+3. **Use GreenShift ONLY with `greenshift-blocks/element`** - other GS block types may not be available
+4. **Extract actual content from screenshot** - no generic placeholders
+5. **Use placeholder images** from reliable services, NOT specific URLs from screenshots
+6. **Follow the EXACT pattern from working testimonials code** for GreenShift
+7. **Test mentally before outputting** - does this look right on a live site?
 
 **CRITICAL:** Output must be WordPress block HTML code with `<!-- wp:` comments, NOT standalone CSS or HTML.
+
+**CRITICAL:** One "Attempt Recovery" click is expected and acceptable. Focus on ensuring code works AFTER recovery.
 
 **OUTPUT FORMAT:**
 ```html
@@ -70,11 +95,11 @@ Replace screenshot colors with Rooted's palette:
 - Dark Text: `#1b2b2b`
 - Medium Gray: `#3b5e5e`
 
-**Generic → Rooted Translation:**
-- Purple/Blue accents → `#4B7878` or `#5E9797`
-- Light backgrounds → `#E1F0F0` or `#f5f7f7`
-- Dark text → `#1b2b2b`
-- Medium gray text → `#3b5e5e` or `#5E9797`
+**Generic â†’ Rooted Translation:**
+- Purple/Blue accents â†’ `#4B7878` or `#5E9797`
+- Light backgrounds â†’ `#E1F0F0` or `#f5f7f7`
+- Dark text â†’ `#1b2b2b`
+- Medium gray text â†’ `#3b5e5e` or `#5E9797`
 
 ### Step 4: Build the Code
 
@@ -113,12 +138,12 @@ User shared screenshot of article header with:
   <!-- Category Chips -->
   <!-- wp:buttons {"style":{"spacing":{"blockGap":"15px"}}} -->
   <div class="wp-block-buttons">
-    <!-- wp:button {"style":{"border":{"radius":"4px"},"typography":{"fontSize":"14px","fontWeight":"600","textTransform":"uppercase","letterSpacing":"0.5px"},"color":{"background":"#4B7878","text":"#ffffff"}}} -->
-    <div class="wp-block-button"><a class="wp-block-button__link has-text-color has-background wp-element-button" style="border-radius:4px;background-color:#4B7878;color:#ffffff;font-size:14px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase" href="/category">CATEGORY</a></div>
+    <!-- wp:button {"backgroundColor":"primary","textColor":"white","style":{"border":{"radius":"4px"},"typography":{"fontSize":"14px","fontWeight":"600"}}} -->
+    <div class="wp-block-button"><a class="wp-block-button__link has-white-color has-primary-background-color has-text-color has-background wp-element-button" style="border-radius:4px;font-size:14px;font-weight:600" href="#top">CATEGORY</a></div>
     <!-- /wp:button -->
     
-    <!-- wp:button {"className":"is-style-outline","style":{"typography":{"fontSize":"14px","fontWeight":"600"},"color":{"text":"#4B7878"}}} -->
-    <div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-text-color wp-element-button" style="color:#4B7878;font-size:14px;font-weight:600" href="/tag">Tag</a></div>
+    <!-- wp:button {"backgroundColor":"white","textColor":"primary","className":"is-style-outline","style":{"border":{"radius":"4px","width":"2px"},"typography":{"fontSize":"14px","fontWeight":"600"}}} -->
+    <div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-primary-color has-white-background-color has-text-color has-background wp-element-button" style="border-radius:4px;border-width:2px;font-size:14px;font-weight:600" href="#top">Tag</a></div>
     <!-- /wp:button -->
   </div>
   <!-- /wp:buttons -->
@@ -197,7 +222,7 @@ User shared screenshot of article header with:
 ```
 
 **Strengths:**
-- Responsive font sizes: Desktop (56px) → Tablet (48px) → Mobile (36px)
+- Responsive font sizes: Desktop (56px) â†’ Tablet (48px) â†’ Mobile (36px)
 - Precise control over every element
 - Better mobile experience out of the box
 - Semantic HTML (section, spans)
@@ -243,17 +268,17 @@ User shared screenshot of article header with:
 ```
 Screenshot uploaded
     |
-    ├─> Simple layout? (headings, text, buttons)
-    │       └─> Use WP Core Blocks
-    │
-    ├─> Needs responsive sizing?
-    │       └─> Use GreenShift Elements
-    │
-    ├─> Complex layout? (grids, flexbox, precise spacing)
-    │       └─> Use GreenShift Elements
-    │
-    └─> Not sure?
-            └─> Provide both versions, explain trade-offs
+    â”œâ”€> Simple layout? (headings, text, buttons)
+    â”‚       â””â”€> Use WP Core Blocks
+    â”‚
+    â”œâ”€> Needs responsive sizing?
+    â”‚       â””â”€> Use GreenShift Elements
+    â”‚
+    â”œâ”€> Complex layout? (grids, flexbox, precise spacing)
+    â”‚       â””â”€> Use GreenShift Elements
+    â”‚
+    â””â”€> Not sure?
+            â””â”€> Provide both versions, explain trade-offs
 ```
 
 ---
@@ -284,27 +309,41 @@ Screenshot uploaded
 
 ## Troubleshooting
 
+### Issue: "Cannot read properties of undefined (reading 'values')" error
+**Cause:** Using nested spacing objects like `"spacing":{"padding":{"values":{...}}}`
+**Solution:** Use direct properties: `"paddingTop":["60px"]` instead
+
+### Issue: Colors not applying correctly
+**Cause:** Using inline `style=""` attributes that GreenShift ignores
+**Solution:** Put colors in `styleAttributes` arrays: `"color":["#ffffff"]`
+
+### Issue: "Block contains unexpected or invalid content" error
+**Cause:** Using GreenShift block types that don't exist in user's installation (like `greenshift-blocks/row`)
+**Solution:** Only use `greenshift-blocks/element` for GreenShift blocks
+
 ### Issue: Code doesn't paste correctly
 **Solution:** 
 1. Switch to Code Editor mode first
 2. Clear any existing content
 3. Paste code
 4. Switch back to Visual Editor
+5. Expect one "Attempt Recovery" click - this is normal
 
-### Issue: Colors look wrong
-**Solution:** Check if theme is overriding styles
-- Use inline `style` attributes instead of classes when possible
-- Or add `!important` to critical styles
+### Issue: Heading shows "Resolve Block" dialog
+**Cause:** WordPress wants to add `wp-block-heading` class
+**Solution:** Click "Convert to Blocks" - it will work perfectly after conversion
 
-### Issue: Responsive sizing not working
-**Solution:** 
-- Core blocks: Add media queries manually or use theme's responsive settings
-- GreenShift: Verify array syntax: `["desktop","tablet","mobile"]`
+### Issue: Button looks terrible on live site
+**Cause:** Not using proper button styling attributes
+**Solution:** Include `boxShadow`, proper `backgroundColor`, `color`, and `borderRadius` in styleAttributes
 
-### Issue: Spacing inconsistent
-**Solution:**
-- Use CSS variables for consistency: `var(--wp--custom--spacing--side, 20px)`
-- Or hardcode specific values for precise control
+### Issue: Background image not showing
+**Cause:** Using invalid URL or wrong CSS property
+**Solution:** Use `"backgroundImage":["url(https://via.placeholder.com/...)"]` with valid placeholder URL
+
+### Issue: Overlay too dark or wrong opacity
+**Cause:** Using wrong rgba value
+**Solution:** Use `"backgroundColor":["rgba(0,0,0,0.4)"]` for 40% dark overlay (adjust 0.4 value as needed)
 
 ---
 
@@ -313,7 +352,7 @@ Screenshot uploaded
 1. **Start simple**: Use WP Core unless you have a specific reason not to
 2. **Test responsive**: Check desktop, tablet, mobile views before finalizing
 3. **Brand consistency**: Always use Rooted's color palette
-4. **Semantic HTML**: Use proper heading hierarchy (H1 → H2 → H3)
+4. **Semantic HTML**: Use proper heading hierarchy (H1 â†’ H2 â†’ H3)
 5. **Accessibility**: Include proper ARIA labels, color contrast
 6. **Performance**: Fewer blocks = faster page load
 
@@ -345,10 +384,40 @@ Before delivering code:
 **Approach:** Both versions work
 **Code:** [See both versions above]
 
-### Example 3: Service Card Grid
-**Use case:** Services page with 4 service cards
-**Approach:** GreenShift Query + Container (if dynamic) or Core Columns (if static)
-**Code:** [To be added when needed]
+### Example 3: Hero Section with Background (Proven Working)
+**Use case:** Full-width hero section with background image, overlay, heading, text, and CTA
+**Approach:** GreenShift Element (tested and working after one recovery click)
+**Code:**
+
+```html
+<!-- wp:greenshift-blocks/element {"id":"gsbp-hero-section","tag":"section","type":"inner","localId":"gsbp-hero-section","align":"full","styleAttributes":{"display":["flex"],"justifyContent":["center"],"flexDirection":["column"],"alignItems":["center"],"paddingRight":["var(\u002d\u002dwp\u002d\u002dcustom\u002d\u002dspacing\u002d\u002dside, min(3vw, 20px))"],"paddingLeft":["var(\u002d\u002dwp\u002d\u002dcustom\u002d\u002dspacing\u002d\u002dside, min(3vw, 20px))"],"marginTop":["0px"],"marginBottom":["0px"],"paddingLink_Extra":"lr","position":["relative"],"backgroundImage":["url(https://via.placeholder.com/1920x800/4B7878/4B7878)"],"backgroundSize":["cover"],"backgroundPosition":["center"],"paddingTop":["80px","60px","40px"],"paddingBottom":["80px","60px","40px"],"minHeight":["500px","400px","350px"]},"isVariation":"contentcolumns"} -->
+<section class="gsbp-hero-section alignfull"><!-- wp:greenshift-blocks/element {"id":"gsbp-hero-overlay","type":"inner","localId":"gsbp-hero-overlay","styleAttributes":{"position":["absolute"],"top":["0"],"left":["0"],"right":["0"],"bottom":["0"],"backgroundColor":["rgba(0,0,0,0.4)"],"zIndex":["1"]}} -->
+<div class="gsbp-hero-overlay"></div>
+<!-- /wp:greenshift-blocks/element -->
+
+<!-- wp:greenshift-blocks/element {"id":"gsbp-hero-content","type":"inner","localId":"gsbp-hero-content","styleAttributes":{"maxWidth":["100%"],"width":["var(\u002d\u002dwp\u002d\u002dstyle\u002d\u002dglobal\u002d\u002dwide-size, 800px)"],"position":["relative"],"zIndex":["2"],"display":["flex"],"flexDirection":["column"],"alignItems":["flex-start"],"rowGap":["30px"]},"isVariation":"nocolumncontent","metadata":{"name":"Content Area"}} -->
+<div class="gsbp-hero-content"><!-- wp:greenshift-blocks/element {"id":"gsbp-hero-h1","tag":"h1","localId":"gsbp-hero-h1","textContent":"Your Heading Here","styleAttributes":{"fontSize":["56px","48px","36px"],"fontWeight":["700"],"lineHeight":["1.2"],"color":["#ffffff"],"marginTop":["0px"],"marginBottom":["0px"]}} -->
+<h1 class="gsbp-hero-h1">Your Heading Here</h1>
+<!-- /wp:greenshift-blocks/element -->
+
+<!-- wp:greenshift-blocks/element {"id":"gsbp-hero-p","tag":"p","localId":"gsbp-hero-p","textContent":"Your description text goes here. This should be extracted from the screenshot.","styleAttributes":{"fontSize":["18px","17px","16px"],"lineHeight":["1.6"],"color":["#ffffff"],"marginTop":["0px"],"marginBottom":["0px"]}} -->
+<p class="gsbp-hero-p">Your description text goes here. This should be extracted from the screenshot.</p>
+<!-- /wp:greenshift-blocks/element -->
+
+<!-- wp:greenshift-blocks/element {"id":"gsbp-hero-btn","tag":"a","localId":"gsbp-hero-btn","href":"#top","textContent":"Button Text","styleAttributes":{"display":["inline-block"],"paddingTop":["14px"],"paddingBottom":["14px"],"paddingLeft":["32px"],"paddingRight":["32px"],"backgroundColor":["#ffffff"],"color":["#1b2b2b"],"borderRadius":["4px"],"fontSize":["16px"],"fontWeight":["600"],"textDecoration":["none"],"boxShadow":["0 2px 8px rgba(0,0,0,0.15)"]}} -->
+<a class="gsbp-hero-btn" href="#top">Button Text</a>
+<!-- /wp:greenshift-blocks/element --></div>
+<!-- /wp:greenshift-blocks/element --></section>
+<!-- /wp:greenshift-blocks/element -->
+```
+
+**Key Points:**
+- Uses `\u002d` encoding for CSS variables
+- Colors in `styleAttributes` arrays, NOT inline styles
+- Direct properties like `paddingTop` NOT nested objects
+- Placeholder image from reliable service
+- One recovery click expected and acceptable
+- Works perfectly after recovery
 
 ---
 
@@ -368,3 +437,30 @@ Before delivering code:
 - `acf-greenshift-setup.md` - Connecting ACF fields to GreenShift blocks
 - `fix-responsive-issues.md` - Troubleshooting mobile layouts
 - `typography-sizing-guide.md` - Fluid vs fixed font sizing
+
+---
+
+## UPDATED BEST PRACTICES (January 2026)
+
+Based on actual testing and failures:
+
+1. **Default to WP Core**: Use WordPress Core blocks unless you specifically need responsive font sizing
+2. **For GreenShift, use ONLY `greenshift-blocks/element`**: Other block types may not be available in user's installation
+3. **Extract actual content from screenshot**: Get real text, don't use generic placeholders like "Your heading here"
+4. **Use reliable placeholder images**: `https://via.placeholder.com/[width]x[height]/[bgcolor]/[bgcolor]` - Example: `https://via.placeholder.com/1920x800/4B7878/4B7878`
+5. **Colors go in styleAttributes arrays**: `"color":["#ffffff"]` - NEVER use inline `style=""` attributes
+6. **Accept one recovery click as normal**: "Attempt Recovery" prompt is expected and acceptable if code works after clicking
+7. **Test code mentally before outputting**: Visualize if colors, spacing, and layout will look right on live site
+8. **Follow proven patterns exactly**: Use the testimonials code structure for GreenShift blocks
+9. **Use direct CSS properties**: `"paddingTop":["60px"]` NOT nested objects like `"spacing":{"padding":{"values":{...}}}`
+10. **Use Unicode encoding for CSS variables**: `\u002d` instead of `-` in variable names
+
+## WHAT TO AVOID
+
+- ❌ Never use `greenshift-blocks/row`, `greenshift-blocks/heading`, `greenshift-blocks/button` - may not exist
+- ❌ Never add inline `style=""` attributes to force colors - GreenShift ignores them
+- ❌ Never use nested spacing objects - causes JavaScript errors
+- ❌ Never be overly positive about code that looks broken on the live site
+- ❌ Never use specific image URLs from screenshots - use placeholder services
+- ❌ Never assume code works without seeing the live result
+
