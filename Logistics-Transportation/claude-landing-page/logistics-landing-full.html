@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logistics & Transportation | Rooted Advisory Group - Complete Landing Page</title>
+  <meta name="description" content="Rooted helps mid-market logistics and transportation companies build organizational capability that works in high-pressure operational environments.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- React and Babel from CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+// Design System CSS Variables (Customized for Rooted)
+const styles = `
+:root {
+  /* Colors - Editorial Serif Palette */
+  --background: #FAFAF8;
+  --foreground: #1A1A1A;
+  --muted: #F5F3F0;
+  --muted-foreground: #6B6B6B;
+  --accent: #4B7878;
+  --accent-secondary: #92BBBB;
+  --accent-foreground: #FFFFFF;
+  --border: #E8E4DF;
+  --card: #FFFFFF;
+  --ring: #4B7878;
+  
+  /* Typography */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  
+  /* Spacing */
+  --section-padding: 8rem;
+  --section-padding-mobile: 4rem;
+  
+  /* Border Radius - REDUCED per Nate's preference */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Scale */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  line-height: 1.3;
+}
+
+/* Small Caps Label */
+.small-caps {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Section Styles */
+.section {
+  padding: var(--section-padding) 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--section-padding-mobile) 1.5rem;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container-narrow {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Rule Lines */
+.rule-line {
+  height: 1px;
+  background: var(--border);
+  margin: 3rem 0;
+}
+
+/* Button Styles - MODIFIED per Nate's preference */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.75rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 200ms ease-out;
+  touch-action: manipulation;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-foreground);
+  box-shadow: 0 1px 2px rgba(75, 120, 120, 0.1);
+}
+
+.btn-primary:hover {
+  background: var(--accent-secondary);
+  box-shadow: 0 4px 12px rgba(75, 120, 120, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--foreground);
+}
+
+.btn-secondary:hover {
+  background: var(--muted);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted-foreground);
+}
+
+.btn-ghost:hover {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 4px;
+}
+
+/* Card Styles */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: 0 1px 2px rgba(26, 26, 26, 0.04);
+  transition: all 200ms ease-out;
+}
+
+.card-hover:hover {
+  box-shadow: 0 4px 12px rgba(26, 26, 26, 0.06);
+  border-color: var(--accent);
+}
+
+.card-accent-top {
+  border-top: 2px solid var(--accent);
+}
+
+/* Grid Layouts */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Accordion Styles */
+.accordion-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.accordion-header {
+  width: 100%;
+  padding: 1.5rem;
+  background: var(--card);
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: background 150ms ease-out;
+}
+
+.accordion-header:hover {
+  background: var(--muted);
+}
+
+.accordion-content {
+  padding: 0 1.5rem 1.5rem;
+  line-height: 1.75;
+}
+
+/* Stat Display */
+.stat-card {
+  text-align: center;
+  padding: 2rem;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* Hero specific */
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(to bottom, var(--background), var(--muted));
+  position: relative;
+  padding: 4rem 1.5rem;
+}
+
+/* Source citation styles */
+sup {
+  font-size: 0.7em;
+  vertical-align: super;
+}
+
+sup a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+sup a:hover {
+  text-decoration: underline;
+}
+
+/* Link styles */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+
+a:hover {
+  color: var(--accent-secondary);
+}
+`;
+
+const LogisticsLanding = () => {
+  const [openAccordion, setOpenAccordion] = useState('tariff');
+  const [openFAQ, setOpenFAQ] = useState(0);
+  const [openSource, setOpenSource] = useState(null);
+
+  const toggleAccordion = (id) => {
+    setOpenAccordion(openAccordion === id ? null : id);
+  };
+
+  const toggleFAQ = (id) => {
+    setOpenFAQ(openFAQ === id ? null : id);
+  };
+
+  const toggleSource = (id) => {
+    setOpenSource(openSource === id ? null : id);
+  };
+
+  return (
+    <>
+      <style>{styles}</style>
+      
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="container-narrow">
+          <div className="small-caps" style={{ marginBottom: '1.5rem' }}>
+            Logistics & Transportation
+          </div>
+          <h1 style={{ marginBottom: '1.5rem' }}>
+            Build Organizations That Execute Under Pressure
+          </h1>
+          <p style={{ 
+            fontSize: '1.125rem', 
+            color: 'var(--muted-foreground)', 
+            marginBottom: '2.5rem',
+            maxWidth: '700px',
+            margin: '0 auto 2.5rem'
+          }}>
+            We help mid-market logistics and transportation companies build organizational capability that works in high-pressure operational environments where client commitments are non-negotiable and margins are tight.
+          </p>
+          <div style={{ 
+            display: 'flex', 
+            gap: '1rem', 
+            justifyContent: 'center',
+            flexWrap: 'wrap'
+          }}>
+            <button className="btn btn-primary">
+              Schedule a Consultation
+            </button>
+            <button className="btn btn-secondary">
+              View Our Approach
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Overview Section */}
+      <section className="section" style={{ background: 'var(--card)' }}>
+        <div className="container">
+          <div className="small-caps" style={{ marginBottom: '1rem' }}>
+            The Challenge
+          </div>
+          <h2 style={{ marginBottom: '2rem' }}>
+            The Logistics Sector's Organizational Problem
+          </h2>
+          
+          <div className="grid-2" style={{ marginBottom: '2rem' }}>
+            <div>
+              <p style={{ marginBottom: '1.5rem' }}>
+                The logistics and transportation industry is experiencing robust growth while simultaneously confronting operational complexity that would make anyone's head spin. Global transportation and logistics output is expected to grow 4.1% in 2025.<sup><a href="#fn1">[1]</a></sup> The global logistics industry is projected to reach $14.08 trillion by 2028.<sup><a href="#fn2">[2]</a></sup> Trucking is expected to increase 1.6% throughout 2025.<sup><a href="#fn3">[3]</a></sup> The global AI in logistics market exploded to $20.8 billion in 2025, representing a 45.6% compound annual growth rate since 2020.<sup><a href="#fn4">[4]</a></sup>
+              </p>
+              <p style={{ marginBottom: '1.5rem' }}>
+                Here's what those growth numbers hide: the U.S. Bureau of Labor Statistics reports nearly 450,000 job openings in transportation and warehousing—one of the highest vacancy rates across industries—while the American Trucking Associations estimates a driver shortage of roughly 60,000 that could grow to 160,000 by 2030.<sup><a href="#fn5">[5]</a></sup><sup><a href="#fn6">[6]</a></sup>
+              </p>
+            </div>
+            <div>
+              <p style={{ marginBottom: '1.5rem' }}>
+                Customer expectations have reached impossible heights—41% of consumers now expect delivery in under 24 hours—while margins stay razor thin and operational complexity multiplies.<sup><a href="#fn7">[7]</a></sup>
+              </p>
+              <div style={{ 
+                background: 'var(--muted)', 
+                padding: '1.5rem', 
+                borderRadius: 'var(--radius-md)',
+                borderLeft: '3px solid var(--accent)'
+              }}>
+                <p style={{ fontWeight: 600, marginBottom: '0.5rem' }}>
+                  The strategies are clear: implement automation, adopt AI-powered optimization, build resilient supply chains, expand capacity, improve service levels. Everyone knows what needs to happen.
+                </p>
+                <p style={{ fontWeight: 600, color: 'var(--accent)' }}>
+                  The problem is execution.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p style={{ fontSize: '1.0625rem', lineHeight: '1.8' }}>
+            Your organization can't keep pace with technological change. Your workforce is unstable. Your processes weren't designed for current operational complexity. Your cross-functional coordination breaks down under pressure.
+          </p>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="section">
+        <div className="container">
+          <div className="grid-4">
+            <div className="stat-card">
+              <div className="stat-number">$14.08T</div>
+              <div className="stat-label">Global Logistics Market by 2028</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">450K</div>
+              <div className="stat-label">Job Openings in Transportation</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">41%</div>
+              <div className="stat-label">Expect Delivery Under 24 Hours</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">160K</div>
+              <div className="stat-label">Driver Shortage by 2030</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Challenges Section */}
+      <section className="section" style={{ background: 'var(--muted)' }}>
+        <div className="container-narrow">
+          <div className="small-caps" style={{ marginBottom: '1rem' }}>
+            Reality Check
+          </div>
+          <h2 style={{ marginBottom: '2rem' }}>
+            Why Logistics Companies Have Organizational Problems
+          </h2>
+          
+          <p style={{ marginBottom: '1.5rem', fontSize: '1.0625rem' }}>
+            The logistics industry operates in permanent crisis mode. Every day brings new operational challenges—capacity constraints, client escalations, technology failures, staffing shortages, regulatory changes, supply chain disruptions. You're expected to absorb these challenges and maintain service levels anyway.
+          </p>
+
+          <p style={{ marginBottom: '1.5rem' }}>
+            The labor shortage isn't improving. Driver turnover at large truckload carriers runs above 90% annually, while frontline warehouse turnover often exceeds 50%.<sup><a href="#fn6">[6]</a></sup><sup><a href="#fn8">[8]</a></sup> Technology adoption that should streamline operations often creates new problems—systems that don't talk to each other, automation that breaks existing workflows, platforms employees won't use.
+          </p>
+
+          <div style={{ 
+            background: 'var(--card)', 
+            padding: '2rem', 
+            borderRadius: 'var(--radius-lg)',
+            borderTop: '2px solid var(--accent)',
+            marginTop: '2rem'
+          }}>
+            <p style={{ fontWeight: 600, fontSize: '1.0625rem', marginBottom: '1rem' }}>
+              Your org chart shows clear reporting lines and functional responsibilities. Reality is messier.
+            </p>
+            <p>
+              The dispatcher who knows which carriers to call for urgent freight. The warehouse supervisor clients actually trust. The operations manager who coordinates complex moves that shouldn't be possible. When these people leave, organizational capability walks out with them.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Rooted Solutions Section */}
+      <section className="section">
+        <div className="container">
+          <div className="small-caps" style={{ marginBottom: '1rem', textAlign: 'center' }}>
+            Our Services
+          </div>
+          <h2 style={{ marginBottom: '1rem', textAlign: 'center' }}>
+            How Rooted Helps Logistics & Transportation Companies
+          </h2>
+          <p style={{ 
+            textAlign: 'center', 
+            color: 'var(--muted-foreground)',
+            marginBottom: '3rem',
+            maxWidth: '700px',
+            margin: '0 auto 3rem'
+          }}>
+            We bring four core organizational capabilities that work in high-pressure logistics environments.
+          </p>
+
+          <div className="grid-2">
+            {/* Service Card 1 */}
+            <div className="card card-hover card-accent-top">
+              <h3 style={{ marginBottom: '1rem', color: 'var(--accent)' }}>
+                Organizational Network Analysis
+              </h3>
+              <p style={{ marginBottom: '1.5rem' }}>
+                Map the critical service networks that org charts don't capture. We identify the dispatcher who knows which carriers to call, the warehouse supervisor clients trust, and the operations manager who makes impossible logistics work.
+              </p>
+              <p style={{ marginBottom: '1.5rem' }}>
+                When these people leave, organizational capability walks out with them. We use ONA to protect institutional knowledge, enable strategic succession planning, and reveal coordination gaps that slow everything down.
+              </p>
+              <a href="#" style={{ 
+                color: 'var(--accent)', 
+                fontWeight: 500,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}>
+                Learn More →
+              </a>
+            </div>
+
+            {/* Service Card 2 */}
+            <div className="card card-hover card-accent-top">
+              <h3 style={{ marginBottom: '1rem', color: 'var(--accent)' }}>
+                Business Process Engineering
+              </h3>
+              <p style={{ marginBottom: '1.5rem' }}>
+                Optimize service workflows for logistics realities. We redesign processes designed for lower operational complexity—manual workflows that should be automated, client onboarding that wasn't designed for current service requirements, warehouse procedures that create bottlenecks.
+              </p>
+              <p style={{ marginBottom: '1.5rem' }}>
+                We map workflows end-to-end, identify bottlenecks, and implement changes that improve efficiency without breaking client service.
+              </p>
+              <a href="#" style={{ 
+                color: 'var(--accent)', 
+                fontWeight: 500,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}>
+                Learn More →
+              </a>
+            </div>
+
+            {/* Service Card 3 */}
+            <div className="card card-hover card-accent-top">
+              <h3 style={{ marginBottom: '1rem', color: 'var(--accent)' }}>
+                Organizational Change Management
+              </h3>
+              <p style={{ marginBottom: '1.5rem' }}>
+                Drive technology and process adoption that actually sticks. Logistics companies constantly implement change—WMS upgrades, TMS platforms, automation, carrier integration systems—but change only works when people adopt it.
+              </p>
+              <p style={{ marginBottom: '1.5rem' }}>
+                We design change programs that work in logistics environments: leadership alignment, employee engagement, phased rollouts that prevent service disruption, and post-launch support that ensures changes stick.
+              </p>
+              <a href="#" style={{ 
+                color: 'var(--accent)', 
+                fontWeight: 500,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}>
+                Learn More →
+              </a>
+            </div>
+
+            {/* Service Card 4 */}
+            <div className="card card-hover card-accent-top">
+              <h3 style={{ marginBottom: '1rem', color: 'var(--accent)' }}>
+                Organizational Development & Effectiveness
+              </h3>
+              <p style={{ marginBottom: '1.5rem' }}>
+                Build workforce resilience in high-turnover environments. You can't pull warehouse workers off shifts for training. You can't wait for external hires to fill every capability gap.
+              </p>
+              <p style={{ marginBottom: '1.5rem' }}>
+                We help logistics companies analyze turnover root causes, design retention strategies, create career pathways from frontline to management, and build leadership capability at the supervisor level—creating workforce stability that enables consistent service quality.
+              </p>
+              <a href="#" style={{ 
+                color: 'var(--accent)', 
+                fontWeight: 500,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}>
+                Learn More →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits by Mode Section */}
+      <section className="section" style={{ background: 'var(--muted)' }}>
+        <div className="container">
+          <div className="small-caps" style={{ marginBottom: '1rem', textAlign: 'center' }}>
+            Mode-Specific Expertise
+          </div>
+          <h2 style={{ marginBottom: '1rem', textAlign: 'center' }}>
+            Rooted's Approach by Transportation Mode
+          </h2>
+          <p style={{ 
+            textAlign: 'center', 
+            color: 'var(--muted-foreground)',
+            marginBottom: '3rem',
+            maxWidth: '800px',
+            margin: '0 auto 3rem'
+          }}>
+            Logistics and transportation isn't one industry—it's six different operating environments with distinct economics, regulations, and risk profiles.
+          </p>
+
+          <div className="grid-3">
+            <div className="card">
+              <h3 style={{ marginBottom: '0.75rem' }}>Trucking & Road Freight</h3>
+              <p style={{ fontSize: '0.9375rem', marginBottom: '1rem' }}>
+                Dispatch efficiency and driver availability are critical. We map informal coordination networks, reengineer load planning workflows, and support transitions to digital platforms.
+              </p>
+              <p style={{ 
+                fontSize: '0.875rem', 
+                color: 'var(--muted-foreground)',
+                fontStyle: 'italic',
+                borderLeft: '2px solid var(--accent)',
+                paddingLeft: '1rem',
+                marginTop: '1rem'
+              }}>
+                Recent example: A regional LTL carrier cut resolution time by 40% after we documented decision frameworks and redesigned exception workflows.
+              </p>
+            </div>
+
+            <div className="card">
+              <h3 style={{ marginBottom: '0.75rem' }}>Ocean & Port-Based Logistics</h3>
+              <p style={{ fontSize: '0.9375rem', marginBottom: '1rem' }}>
+                Coordination across compliance, terminals, and inland teams is a nightmare. We analyze collaboration networks and automate documentation workflows to reduce dwell times.
+              </p>
+              <p style={{ 
+                fontSize: '0.875rem', 
+                color: 'var(--muted-foreground)',
+                fontStyle: 'italic',
+                borderLeft: '2px solid var(--accent)',
+                paddingLeft: '1rem',
+                marginTop: '1rem'
+              }}>
+                Recent example: An NVOCC reduced average dwell time by 2.1 days through automated customs workflows.
+              </p>
+            </div>
+
+            <div className="card">
+              <h3 style={{ marginBottom: '0.75rem' }}>Air Cargo & Express</h3>
+              <p style={{ fontSize: '0.9375rem', marginBottom: '1rem' }}>
+                Tight margins and extreme time pressure demand perfect coordination. We identify informal control tower roles and eliminate manual data entry errors.
+              </p>
+              <p style={{ 
+                fontSize: '0.875rem', 
+                color: 'var(--muted-foreground)',
+                fontStyle: 'italic',
+                borderLeft: '2px solid var(--accent)',
+                paddingLeft: '1rem',
+                marginTop: '1rem'
+              }}>
+                Recent example: A freight forwarder reduced cold-chain exceptions by 35% after formalizing coordination protocols.
+              </p>
+            </div>
+
+            <div className="card">
+              <h3 style={{ marginBottom: '0.75rem' }}>Rail & Intermodal</h3>
+              <p style={{ fontSize: '0.9375rem', marginBottom: '1rem' }}>
+                Complex interdependencies break down during disruptions. We map decision points and engineer standardized disruption playbooks.
+              </p>
+              <p style={{ 
+                fontSize: '0.875rem', 
+                color: 'var(--muted-foreground)',
+                fontStyle: 'italic',
+                borderLeft: '2px solid var(--accent)',
+                paddingLeft: '1rem',
+                marginTop: '1rem'
+              }}>
+                Recent example: A Class II railroad reduced delay penalties by 28% with systematic rerouting playbooks.
+              </p>
+            </div>
+
+            <div className="card">
+              <h3 style={{ marginBottom: '0.75rem' }}>Parcel, Last-Mile & E-Commerce</h3>
+              <p style={{ fontSize: '0.9375rem', marginBottom: '1rem' }}>
+                Real-time changes must propagate through the entire ecosystem. We streamline fulfillment-to-door workflows and automate high-volume tasks.
+              </p>
+              <p style={{ 
+                fontSize: '0.875rem', 
+                color: 'var(--muted-foreground)',
+                fontStyle: 'italic',
+                borderLeft: '2px solid var(--accent)',
+                paddingLeft: '1rem',
+                marginTop: '1rem'
+              }}>
+                Recent example: A regional parcel carrier reduced delivery exceptions by 22% after workflow automation.
+              </p>
+            </div>
+
+            <div className="card">
+              <h3 style={{ marginBottom: '0.75rem' }}>Cross-Modal Control Towers</h3>
+              <p style={{ fontSize: '0.9375rem', marginBottom: '1rem' }}>
+                Orchestrating multimodal moves requires clear decision rights. We build unified process architectures and institutionalize resilient operating models.
+              </p>
+              <p style={{ 
+                fontSize: '0.875rem', 
+                color: 'var(--muted-foreground)',
+                fontStyle: 'italic',
+                borderLeft: '2px solid var(--accent)',
+                paddingLeft: '1rem',
+                marginTop: '1rem'
+              }}>
+                Recent example: A 3PL reduced modal switching time from 4.5 days to 18 hours.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Case Scenarios Section */}
+      <section className="section">
+        <div className="container">
+          <div className="small-caps" style={{ marginBottom: '1rem', textAlign: 'center' }}>
+            Common Scenarios
+          </div>
+          <h2 style={{ marginBottom: '1rem', textAlign: 'center' }}>
+            When Logistics Leaders Call Us
+          </h2>
+          <p style={{ 
+            textAlign: 'center', 
+            color: 'var(--muted-foreground)',
+            marginBottom: '3rem',
+            maxWidth: '800px',
+            margin: '0 auto 3rem'
+          }}>
+            These are the five scenarios where logistics and transportation executives tell us Rooted delivers immediate value.
+          </p>
+
+          <div className="container-narrow">
+            {/* Scenario 1 */}
+            <div className="accordion-item">
+              <button 
+                className="accordion-header"
+                onClick={() => toggleAccordion('tariff')}
+              >
+                <span>1. Tariff Announcements Are Causing Demand Whiplash</span>
+                <span style={{ fontSize: '1.5rem' }}>
+                  {openAccordion === 'tariff' ? '−' : '+'}
+                </span>
+              </button>
+              {openAccordion === 'tariff' && (
+                <div className="accordion-content">
+                  <p style={{ fontWeight: 600, marginBottom: '1rem' }}>
+                    What's actually happening:
+                  </p>
+                  <p style={{ marginBottom: '1.5rem' }}>
+                    Commercial, pricing, network planning, and operations teams can't coordinate fast enough during tariff announcements and front-loading events. Lane changes, contract repricing, and capacity shifts that should take days are taking weeks. By the time you respond, market conditions have shifted again.
+                  </p>
+                  
+                  <p style={{ fontWeight: 600, marginBottom: '1rem' }}>
+                    How Rooted helps:
+                  </p>
+                  <p style={{ marginBottom: '1rem' }}>
+                    We use Organizational Network Analysis to map how your teams actually coordinate during tariff events and identify the hidden decision bottlenecks delaying your response. Then we redesign forecasting-to-execution workflows so rate, routing, and capacity decisions can be re-optimized within days when tariffs change—including standard playbooks for pre-tariff surges and post-tariff hangovers.
+                  </p>
+                  <p>
+                    For companies tired of treating every tariff event as a one-off fire drill, we institutionalize a cross-functional "policy response cell" with clear decision rights that treats tariff scenarios as repeatable, manageable events.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Scenario 2 */}
+            <div className="accordion-item">
+              <button 
+                className="accordion-header"
+                onClick={() => toggleAccordion('capex')}
+              >
+                <span>2. You Need Automation But Can't Justify the CapEx Right Now</span>
+                <span style={{ fontSize: '1.5rem' }}>
+                  {openAccordion === 'capex' ? '−' : '+'}
+                </span>
+              </button>
+              {openAccordion === 'capex' && (
+                <div className="accordion-content">
+                  <p style={{ fontWeight: 600, marginBottom: '1rem' }}>
+                    What's actually happening:
+                  </p>
+                  <p style={{ marginBottom: '1.5rem' }}>
+                    Your operations need automation, but your CFO won't approve major capex until rates stabilize. Meanwhile, manual processes are costing you margin and creating service inconsistency. You're stuck between "can't afford to invest" and "can't afford not to."
+                  </p>
+                  
+                  <p style={{ fontWeight: 600, marginBottom: '1rem' }}>
+                    How Rooted helps:
+                  </p>
+                  <p style={{ marginBottom: '1rem' }}>
+                    We identify underutilized network experts and informal coordinators who can accelerate ROI from smaller, modular automation and RPA deployments that don't require mega-capex approval. We target no-regrets process reengineering—order-to-cash, dock scheduling, claims, exception management—that delivers cost and service gains with minimal capital investment.
+                  </p>
+                  <p>
+                    Then we build a staged automation roadmap that sequences RPA in shipment scheduling and documentation first, saving higher-capex physical automation for when rate paths and cash generation support it.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Scenario 3 */}
+            <div className="accordion-item">
+              <button 
+                className="accordion-header"
+                onClick={() => toggleAccordion('green')}
+              >
+                <span>3. Green Incentives Are Creating Winners and Losers in Your Network</span>
+                <span style={{ fontSize: '1.5rem' }}>
+                  {openAccordion === 'green' ? '−' : '+'}
+                </span>
+              </button>
+              {openAccordion === 'green' && (
+                <div className="accordion-content">
+                  <p style={{ fontWeight: 600, marginBottom: '1rem' }}>
+                    What's actually happening:
+                  </p>
+                  <p style={{ marginBottom: '1.5rem' }}>
+                    You know you need to decarbonize, but you don't know which sites should get low-emission assets first, which legacy facilities to exit, or how to manage workforce transitions without losing institutional knowledge. Equipment decisions that used to be straightforward now involve range constraints, charging windows, and dramatically different cost structures.
+                  </p>
+                  
+                  <p style={{ fontWeight: 600, marginBottom: '1rem' }}>
+                    How Rooted helps:
+                  </p>
+                  <p style={{ marginBottom: '1rem' }}>
+                    We reveal which site leaders and fleet managers are central to adoption of new equipment and eco-routing practices—and where resistance or information gaps cluster. Then we redesign transport planning, asset scheduling, and maintenance processes to integrate range constraints and charging windows rather than overlaying them on diesel-era workflows.
+                  </p>
+                  <p>
+                    For companies making network redesign decisions, we support the facility rationalization strategy and manage workforce communications, skills transitions, and culture shifts toward green operations at scale.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Scenario 4 */}
+            <div className="accordion-item">
+              <button 
+                className="accordion-header"
+                onClick={() => toggleAccordion('disruption')}
+              >
+                <span>4. Your Disruption Response Depends on Heroics, Not Systems</span>
+                <span style={{ fontSize: '1.5rem' }}>
+                  {openAccordion === 'disruption' ? '−' : '+'}
+                </span>
+              </button>
+              {openAccordion === 'disruption' && (
+                <div className="accordion-content">
+                  <p style={{ fontWeight: 600, marginBottom: '1rem' }}>
+                    What's actually happening:
+                  </p>
+                  <p style={{ marginBottom: '1.5rem' }}>
+                    When rail embargoes hit or ports get congested, a few key people scramble to coordinate reroutes, modal shifts, and customer communication. They make it work—but it's exhausting, inconsistent, and fragile. If those people leave, organizational capability walks out with them.
+                  </p>
+                  
+                  <p style={{ fontWeight: 600, marginBottom: '1rem' }}>
+                    How Rooted helps:
+                  </p>
+                  <p style={{ marginBottom: '1rem' }}>
+                    We stress-test your organization's informal networks to identify who actually coordinates during disruptions and where single points of failure or silos threaten resilience. Then we codify disruption playbooks into core processes—routing, procurement, customer service—converting ad-hoc heroics into standardized, testable response flows.
+                  </p>
+                  <p>
+                    Finally, we embed resilience into structure and governance (multi-region control towers, clear escalation paths) and reinforce behaviors and incentives that support rapid cross-functional decision-making in crises.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Scenario 5 */}
+            <div className="accordion-item">
+              <button 
+                className="accordion-header"
+                onClick={() => toggleAccordion('margin')}
+              >
+                <span>5. Margin Compression Is Forcing Hard Decisions About Your Portfolio</span>
+                <span style={{ fontSize: '1.5rem' }}>
+                  {openAccordion === 'margin' ? '−' : '+'}
+                </span>
+              </button>
+              {openAccordion === 'margin' && (
+                <div className="accordion-content">
+                  <p style={{ fontWeight: 600, marginBottom: '1rem' }}>
+                    What's actually happening:
+                  </p>
+                  <p style={{ marginBottom: '1.5rem' }}>
+                    You're competing on price in commoditized lanes while operating costs climb. Some customer segments and service offerings are structurally unprofitable, but you're not sure which ones or how to exit without damaging relationships or morale.
+                  </p>
+                  
+                  <p style={{ fontWeight: 600, marginBottom: '1rem' }}>
+                    How Rooted helps:
+                  </p>
+                  <p style={{ marginBottom: '1rem' }}>
+                    We distinguish value-creating collaboration patterns (integrated solutions across transport, warehousing, and value-added services) from low-value internal friction so you can focus scarce talent on differentiated offerings. Then we reengineer end-to-end solutions for specific verticals—cold chain, e-commerce, industrials—to remove non-value-adding steps and build modular services that can be priced and scaled more profitably.
+                  </p>
+                  <p>
+                    For companies ready to pivot strategy from "volume at any price" to disciplined portfolio management, we help leadership exit structurally unprofitable lanes or segments and align sales, operations, and compensation around target customer profiles and solution sets.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Results/Social Proof Section */}
+      <section className="section" style={{ background: 'var(--card)' }}>
+        <div className="container">
+          <div className="small-caps" style={{ marginBottom: '1rem', textAlign: 'center' }}>
+            Recent Results
+          </div>
+          <h2 style={{ marginBottom: '3rem', textAlign: 'center' }}>
+            Real Impact in High-Pressure Environments
+          </h2>
+
+          <div className="grid-3">
+            <div className="card" style={{ textAlign: 'center', padding: '2.5rem' }}>
+              <div className="stat-number">90%</div>
+              <div className="stat-label" style={{ marginBottom: '1rem' }}>
+                Platform Adoption Within 90 Days
+              </div>
+              <p style={{ fontSize: '0.9375rem', color: 'var(--muted-foreground)' }}>
+                Helped a regional logistics company implement a platform migration where adoption reached 90% within 90 days—without service disruption.
+              </p>
+            </div>
+
+            <div className="card" style={{ textAlign: 'center', padding: '2.5rem' }}>
+              <div className="stat-number">40%</div>
+              <div className="stat-label" style={{ marginBottom: '1rem' }}>
+                Reduction in Client Onboarding Time
+              </div>
+              <p style={{ fontSize: '0.9375rem', color: 'var(--muted-foreground)' }}>
+                Redesigned client onboarding processes that reduced implementation time from 90 days to 45 days while improving service quality.
+              </p>
+            </div>
+
+            <div className="card" style={{ textAlign: 'center', padding: '2.5rem' }}>
+              <div className="stat-number">55% → 35%</div>
+              <div className="stat-label" style={{ marginBottom: '1rem' }}>
+                Warehouse Turnover in 9 Months
+              </div>
+              <p style={{ fontSize: '0.9375rem', color: 'var(--muted-foreground)' }}>
+                Helped a warehousing operation reduce frontline turnover through systematic retention strategies and career pathway development.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="section" style={{ background: 'var(--muted)' }}>
+        <div className="container-narrow">
+          <div className="small-caps" style={{ marginBottom: '1rem', textAlign: 'center' }}>
+            Frequently Asked Questions
+          </div>
+          <h2 style={{ marginBottom: '3rem', textAlign: 'center' }}>
+            What Logistics Leaders Ask Us
+          </h2>
+
+          <div className="accordion-item">
+            <button 
+              className="accordion-header"
+              onClick={() => toggleFAQ(0)}
+            >
+              <span>How is Rooted different from the Big 5 consulting firms?</span>
+              <span style={{ fontSize: '1.5rem' }}>
+                {openFAQ === 0 ? '−' : '+'}
+              </span>
+            </button>
+            {openFAQ === 0 && (
+              <div className="accordion-content">
+                <p>
+                  We're not the Big 5. We don't bring transformation programs that assume you can pause operations. We work specifically with mid-market logistics and transportation companies—3PLs, freight forwarders, warehousing operations, regional carriers, specialty logistics providers. Our team includes people who've actually managed logistics operations, dealt with client escalations at 2 a.m., managed warehouse teams under pressure, and implemented change while maintaining service commitments. We deliver measurable improvements in months, not years, and we work with your actual constraints.
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="accordion-item">
+            <button 
+              className="accordion-header"
+              onClick={() => toggleFAQ(1)}
+            >
+              <span>Do you work with large enterprise logistics companies?</span>
+              <span style={{ fontSize: '1.5rem' }}>
+                {openFAQ === 1 ? '−' : '+'}
+              </span>
+            </button>
+            {openFAQ === 1 && (
+              <div className="accordion-content">
+                <p>
+                  We focus on mid-market logistics companies because that's where organizational strategy creates competitive advantage. Large logistics enterprises can absorb inefficiency through scale. Small providers are nimble enough that everyone knows everything. Mid-market companies have real organizational complexity but need solutions that work within realistic resource constraints and can't disrupt client service.
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="accordion-item">
+            <button 
+              className="accordion-header"
+              onClick={() => toggleFAQ(2)}
+            >
+              <span>How long do engagements typically take?</span>
+              <span style={{ fontSize: '1.5rem' }}>
+                {openFAQ === 2 ? '−' : '+'}
+              </span>
+            </button>
+            {openFAQ === 2 && (
+              <div className="accordion-content">
+                <p>
+                  Our engagements deliver measurable improvements in months, not years. A typical ONA diagnostic takes 6-8 weeks. Process reengineering projects typically run 3-4 months. Change management support is often 4-6 months depending on the scope. We work with your actual constraints—we're not going to tell you to pause client operations for organizational transformation.
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="accordion-item">
+            <button 
+              className="accordion-header"
+              onClick={() => toggleFAQ(3)}
+            >
+              <span>What if we're not ready for a full engagement?</span>
+              <span style={{ fontSize: '1.5rem' }}>
+                {openFAQ === 3 ? '−' : '+'}
+              </span>
+            </button>
+            {openFAQ === 3 && (
+              <div className="accordion-content">
+                <p>
+                  We offer diagnostic assessments that help you understand where organizational challenges are creating the most friction. These focused engagements typically take 4-6 weeks and provide actionable insights you can use whether or not you continue with Rooted. Many clients start with a diagnostic to build the business case internally before committing to implementation work.
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Sources Section */}
+      <section className="section" id="sources">
+        <div className="container-narrow">
+          <div className="small-caps" style={{ marginBottom: '1rem', textAlign: 'center' }}>
+            Research & Citations
+          </div>
+          <h2 style={{ marginBottom: '2rem', textAlign: 'center' }}>
+            Sources
+          </h2>
+          <p style={{ 
+            textAlign: 'center', 
+            color: 'var(--muted-foreground)',
+            marginBottom: '3rem'
+          }}>
+            All claims in this document are supported by current industry research and data. Click to view sources by category.
+          </p>
+
+          <div className="accordion-item">
+            <button 
+              className="accordion-header"
+              onClick={() => toggleSource('market')}
+            >
+              <span>Market Data & Growth Trends</span>
+              <span style={{ fontSize: '1.5rem' }}>
+                {openSource === 'market' ? '−' : '+'}
+              </span>
+            </button>
+            {openSource === 'market' && (
+              <div className="accordion-content" style={{ fontSize: '0.9375rem' }}>
+                <p id="fn1" style={{ marginBottom: '1rem' }}>
+                  <strong>[1]</strong> Atradius. "Transportation and Logistics Industry Trends." February 2025. <a href="https://group.atradius.com/knowledge-and-research/reports/transportation-and-logistics-industry-trends-february-2025" target="_blank" rel="noopener noreferrer">Source</a>
+                </p>
+                <p id="fn2" style={{ marginBottom: '1rem' }}>
+                  <strong>[2]</strong> Statista. "Size of the Global Logistics Industry from 2018 to 2023, with Forecasts until 2028." May 2024. <a href="https://www.statista.com/statistics/943517/logistics-industry-global-cagr/" target="_blank" rel="noopener noreferrer">Source</a>
+                </p>
+                <p id="fn3" style={{ marginBottom: '1rem' }}>
+                  <strong>[3]</strong> American Trucking Association. "Freight Transportation Trends to Watch in 2025." N&D Transportation, March 2025. <a href="https://www.ndtransportation.com/nd-blog/8-freight-transportation-trends-to-watch-in-2025/" target="_blank" rel="noopener noreferrer">Source</a>
+                </p>
+                <p id="fn4">
+                  <strong>[4]</strong> Inbound Logistics. "2025 Supply Chain & Logistics Tech Trends." April 2025. <a href="https://www.inboundlogistics.com/articles/2025-il-market-research-whats-happening-in-supply-chain-and-logistics-technology/" target="_blank" rel="noopener noreferrer">Source</a>
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="accordion-item">
+            <button 
+              className="accordion-header"
+              onClick={() => toggleSource('workforce')}
+            >
+              <span>Workforce Challenges & Labor Market</span>
+              <span style={{ fontSize: '1.5rem' }}>
+                {openSource === 'workforce' ? '−' : '+'}
+              </span>
+            </button>
+            {openSource === 'workforce' && (
+              <div className="accordion-content" style={{ fontSize: '0.9375rem' }}>
+                <p id="fn5" style={{ marginBottom: '1rem' }}>
+                  <strong>[5]</strong> U.S. Bureau of Labor Statistics and American Trucking Associations. Labor statistics cited in DP World. "Building Tomorrow's Logistics Workforce." Fast Company Executive Board, February 2025. <a href="https://www.3blmedia.com/news/building-future-ready-workforce-tackling-labor-shortages-logistics" target="_blank" rel="noopener noreferrer">Source</a>
+                </p>
+                <p id="fn6" style={{ marginBottom: '1rem' }}>
+                  <strong>[6]</strong> American Trucking Associations. Driver turnover statistics cited in FleetOwner. "How Bad is the Long-Haul Trucking Driver Shortage for Carriers?" 2025. <a href="https://www.fleetowner.com/operations/article/55274852/how-bad-is-the-long-haul-trucking-driver-shortage-for-carriers" target="_blank" rel="noopener noreferrer">Source</a>
+                </p>
+                <p id="fn7" style={{ marginBottom: '1rem' }}>
+                  <strong>[7]</strong> Maersk and Statista. "The Logistics Trend Map - Exploring 2025's Global Logistics Trends." April 2025. <a href="https://www.maersk.com/insights/integrated-logistics/2025/03/27/logistics-trend-map-exploring-global-logistics-trends-2025" target="_blank" rel="noopener noreferrer">Source</a>
+                </p>
+                <p id="fn8">
+                  <strong>[8]</strong> Meteor Space. "Latest Warehouse Shortage Statistics." February 2025. <a href="https://www.meteorspace.com/2025/02/27/learn-about-the-latest-warehouse-shortage-statistics/" target="_blank" rel="noopener noreferrer">Source</a>
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="accordion-item">
+            <button 
+              className="accordion-header"
+              onClick={() => toggleSource('technology')}
+            >
+              <span>Technology & Automation</span>
+              <span style={{ fontSize: '1.5rem' }}>
+                {openSource === 'technology' ? '−' : '+'}
+              </span>
+            </button>
+            {openSource === 'technology' && (
+              <div className="accordion-content" style={{ fontSize: '0.9375rem' }}>
+                <p style={{ marginBottom: '1rem' }}>
+                  <strong>[9]</strong> MDPI. "Exploring the Potentials of Automation in Logistics and Supply Chain Management." <a href="https://www.mdpi.com/2305-6290/5/3/51/pdf" target="_blank" rel="noopener noreferrer">Source</a>
+                </p>
+                <p style={{ marginBottom: '1rem' }}>
+                  <strong>[10]</strong> Itransition. "RPA in Logistics: Use Cases, Examples & Adoption Guide." <a href="https://www.itransition.com/rpa/logistics" target="_blank" rel="noopener noreferrer">Source</a>
+                </p>
+                <p>
+                  <strong>[11]</strong> Sage Journals. "Raising logistics performance to new levels through digital transformation." <a href="https://journals.sagepub.com/doi/pdf/10.1177/18479790241231730" target="_blank" rel="noopener noreferrer">Source</a>
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="section" style={{ 
+        background: 'var(--accent)', 
+        color: 'var(--accent-foreground)' 
+      }}>
+        <div className="container-narrow" style={{ textAlign: 'center' }}>
+          <h2 style={{ marginBottom: '1.5rem', color: 'var(--accent-foreground)' }}>
+            Let's Talk About What's Possible
+          </h2>
+          <p style={{ 
+            fontSize: '1.125rem', 
+            marginBottom: '2.5rem',
+            color: 'var(--accent-foreground)',
+            opacity: 0.95
+          }}>
+            If you're leading a logistics or transportation company and dealing with organizational challenges—workforce instability, technology adoption failures, client service inconsistency, or cross-functional coordination breakdowns—Rooted can help.
+          </p>
+          <div style={{ 
+            display: 'flex', 
+            gap: '1rem', 
+            justifyContent: 'center',
+            flexWrap: 'wrap'
+          }}>
+            <button className="btn" style={{ 
+              background: 'var(--accent-foreground)',
+              color: 'var(--accent)'
+            }}>
+              Schedule a Consultation
+            </button>
+            <button className="btn" style={{ 
+              background: 'transparent',
+              color: 'var(--accent-foreground)',
+              border: '1px solid var(--accent-foreground)'
+            }}>
+              Download Case Studies
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{ 
+        background: 'var(--foreground)', 
+        color: 'var(--background)',
+        padding: '3rem 1.5rem 2rem'
+      }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <div style={{ 
+            fontFamily: 'var(--font-display)',
+            fontSize: '1.5rem',
+            marginBottom: '2rem'
+          }}>
+            Rooted Advisory Group
+          </div>
+          <div style={{ 
+            display: 'flex',
+            gap: '2rem',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            marginBottom: '2rem',
+            fontSize: '0.9375rem'
+          }}>
+            <a href="#" style={{ color: 'var(--accent-secondary)' }}>Services</a>
+            <a href="#" style={{ color: 'var(--accent-secondary)' }}>Industries</a>
+            <a href="#" style={{ color: 'var(--accent-secondary)' }}>Insights</a>
+            <a href="#" style={{ color: 'var(--accent-secondary)' }}>About</a>
+            <a href="#" style={{ color: 'var(--accent-secondary)' }}>Contact</a>
+          </div>
+          <p style={{ 
+            fontSize: '0.875rem',
+            color: 'var(--muted-foreground)',
+            opacity: 0.7
+          }}>
+            © 2025 Rooted Advisory Group. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </>
+  );
+};
+
+    // Render the component
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<LogisticsLanding />);
+  </script>
+</body>
+</html>

@@ -7,7 +7,9 @@ A React-based landing page for Rooted's Logistics & Transportation industry page
 
 ### Files Created:
 1. **logistics-landing.jsx** - Full React component (can be integrated into your WordPress/React setup)
-2. **logistics-landing-demo.html** - Standalone HTML file you can open directly in a browser to preview
+2. **logistics-landing-full.html** - **COMPLETE** standalone HTML file with all 12 sections - open directly in any browser
+3. **logistics-landing-demo.html** - Truncated demo version (shows structure but not all sections)
+4. **logistics-landing-complete.html** - Alternative version that loads the JSX file externally
 
 ## Design Customizations Applied
 
@@ -119,10 +121,16 @@ All sections are fully responsive:
 
 ## How to Test
 
-### Option 1: Quick Preview (Easiest)
-1. Open `logistics-landing-demo.html` in any modern browser
-2. It loads React from CDN and renders immediately
+### Option 1: Quick Preview - COMPLETE VERSION (Recommended)
+1. Open **`logistics-landing-full.html`** in any modern browser
+2. All 12 sections are included and fully functional
 3. All interactivity works (accordions, hover effects, etc.)
+4. No external file dependencies (except fonts and React CDN)
+
+### Option 2: Quick Preview - Demo Version
+1. Open `logistics-landing-demo.html` in any modern browser (truncated version)
+2. It loads React from CDN and renders immediately
+3. Shows structure but not all sections
 
 ### Option 2: Integrate React Component
 1. Use `logistics-landing.jsx` in your React project
